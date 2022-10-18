@@ -4,6 +4,7 @@ class TicTacToe
 	char grid[9];
 
 	char threeInARow(int a, int b, int c);
+	bool TicTacToe::occupied(int cell);
 public:
 	TicTacToe(char* b);
 	

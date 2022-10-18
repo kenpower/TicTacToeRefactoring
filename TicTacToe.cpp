@@ -10,13 +10,14 @@ TicTacToe::TicTacToe(char* b) {
 int TicTacToe::bestMoveFor(char player) {
 	const int NoMove = -1;
 	for (int move = 0; move < 9; move++) {
-		if (grid[move] == '-') {
+		if (!occupied(move)) {
 			TicTacToe t = play(move, player);
-			if (t.winner() == player) return move;
+			if (t.winner() == player) 
+				return move;
 		}
 	}
 	for (int move = 0; move < 9; move++)
-		if (grid[move] == '-')
+		if (!occupied(move))
 			return move;
 	return NoMove;
 }
@@ -28,7 +29,11 @@ TicTacToe TicTacToe::play(int i, char player) {
 }
 
 char TicTacToe::threeInARow(int a, int b, int c) {
-	return grid[a] != '-' && grid[a] == grid[b] && grid[b] == grid[c];
+	return occupied(a) && grid[a] == grid[b] && grid[b] == grid[c];
+}
+
+bool TicTacToe::occupied(int cell) {
+	return grid[cell] != '-';
 }
 
 char TicTacToe::winner() {
