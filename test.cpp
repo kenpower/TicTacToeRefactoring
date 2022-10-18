@@ -1,12 +1,6 @@
 #include "pch.h"
 #include "TicTacToe.h"
 
-//TEST(TestCaseName, TestName) {
-//  EXPECT_EQ(1, 1);
-//  EXPECT_TRUE(true);
-//}
-
-
 TEST(TicTacToe, FirstAvailableMove5) {
 	TicTacToe ttt("XOXOX-OXO");
 	EXPECT_EQ(5, ttt.move('X'));
