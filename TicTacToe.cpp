@@ -7,16 +7,16 @@ TicTacToe::TicTacToe(char* b) {
 }
 
 
-int TicTacToe::move(char player) {
-	for (int i = 0; i < 9; i++) {
-		if (grid[i] == '-') {
-			TicTacToe t = play(i, player);
-			if (t.winner() == player) return i;
+int TicTacToe::bestMoveFor(char player) {
+	for (int move = 0; move < 9; move++) {
+		if (grid[move] == '-') {
+			TicTacToe t = play(move, player);
+			if (t.winner() == player) return move;
 		}
 	}
-	for (int i = 0; i < 9; i++)
-		if (grid[i] == '-')
-			return i;
+	for (int move = 0; move < 9; move++)
+		if (grid[move] == '-')
+			return move;
 	return -1;
 }
 

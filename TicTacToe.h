@@ -5,7 +5,7 @@ class TicTacToe
 public:
 	TicTacToe(char* b);
 	
-	int move(char player);
+	int bestMoveFor(char player);
 	
 	TicTacToe play(int i, char player);
 	
