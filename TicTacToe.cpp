@@ -8,6 +8,7 @@ TicTacToe::TicTacToe(char* b) {
 
 
 int TicTacToe::bestMoveFor(char player) {
+	const int NoMove = -1;
 	for (int move = 0; move < 9; move++) {
 		if (grid[move] == '-') {
 			TicTacToe t = play(move, player);
@@ -17,7 +18,7 @@ int TicTacToe::bestMoveFor(char player) {
 	for (int move = 0; move < 9; move++)
 		if (grid[move] == '-')
 			return move;
-	return -1;
+	return NoMove;
 }
 
 TicTacToe TicTacToe::play(int i, char player) {
