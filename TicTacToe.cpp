@@ -9,17 +9,20 @@ TicTacToe::TicTacToe(char* b) {
 
 int TicTacToe::bestMoveFor(char player) {
 	const int NoMove = -1;
+	int result = NoMove;
 	for (int move = 0; move < 9; move++) {
 		if (!occupied(move)) {
 			TicTacToe t = play(move, player);
-			if (t.winner() == player) 
-				return move;
+			if (t.winner() == player){
+				result = move;
+				break;
+			}	
+			if (!occupied(move))
+				result = move;
 		}
 	}
-	for (int move = 0; move < 9; move++)
-		if (!occupied(move))
-			return move;
-	return NoMove;
+
+	return result;
 }
 
 TicTacToe TicTacToe::play(int i, char player) {
