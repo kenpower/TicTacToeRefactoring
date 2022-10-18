@@ -2,6 +2,8 @@
 class TicTacToe
 {
 	char grid[9];
+
+	char threeInARow(int a, int b, int c);
 public:
 	TicTacToe(char* b);
 	

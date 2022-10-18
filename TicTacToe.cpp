@@ -27,17 +27,17 @@ TicTacToe TicTacToe::play(int i, char player) {
 	return t;
 }
 
+char TicTacToe::threeInARow(int a, int b, int c) {
+	return grid[a] != '-' && grid[a] == grid[b] && grid[b] == grid[c];
+}
+
 char TicTacToe::winner() {
-	if (grid[0] != '-'
-		&& grid[0] == grid[1]
-		&& grid[1] == grid[2])
+	if (threeInARow(0,1,2))
 		return grid[0];
-	if (grid[3] != '-'
-		&& grid[3] == grid[4]
-		&& grid[4] == grid[5])
-		return grid[3];
-	if (grid[6] != '-'
-		&& grid[6] == grid[7]
-		&& grid[7] == grid[8])
-		return grid[6]; return '-';
+	if (threeInARow(3, 4, 5))
+		return grid[0]; 
+	if (threeInARow(6, 7, 8))
+		return grid[0]; 
+	
+	return '-';
 }
