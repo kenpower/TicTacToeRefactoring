@@ -3,17 +3,17 @@
 
 TEST(TicTacToe, ValidMove5) {
 	TicTacToe ttt("XOXOX-OXO");
-	EXPECT_EQ(5, ttt.bestMoveFor('X'));
+	EXPECT_EQ(5, ttt.bestSquareFor('X'));
 }
 
 TEST(TicTacToe, ValidMove8) {
 	TicTacToe ttt("XOXOXOOX-");
-	EXPECT_EQ(8, ttt.bestMoveFor('X'));
+	EXPECT_EQ(8, ttt.bestSquareFor('X'));
 }
 
 TEST(TicTacToe, ValidMove0) {
 	TicTacToe ttt("---------");
-	int move = ttt.bestMoveFor('X');
+	int move = ttt.bestSquareFor('X');
 	EXPECT_TRUE(	
 		0 == move ||
 		1 == move ||
@@ -29,7 +29,7 @@ TEST(TicTacToe, ValidMove0) {
 
 TEST(TicTacToe, ValidMoveNone) {
 	TicTacToe ttt("XXXXXXXX");
-	EXPECT_EQ(-1, ttt.bestMoveFor('X'));
+	EXPECT_EQ(-1, ttt.bestSquareFor('X'));
 }
 
 TEST(TicTacToe, WinningMove) {
@@ -37,7 +37,7 @@ TEST(TicTacToe, WinningMove) {
 		"OO-"
 		"XX-"
 		"OOX");
-	EXPECT_EQ(5, ttt.bestMoveFor('X'));
+	EXPECT_EQ(5, ttt.bestSquareFor('X'));
 }
 
 TEST(TicTacToe, WinningMoveVertical) {
@@ -46,7 +46,7 @@ TEST(TicTacToe, WinningMoveVertical) {
 		"XO-"
 		"XOX");
 	
-	EXPECT_EQ(0, ttt.bestMoveFor('X'));
+	EXPECT_EQ(0, ttt.bestSquareFor('X'));
 }
 
 TEST(TicTacToe, WinningMoveDiagonal) {
@@ -55,5 +55,5 @@ TEST(TicTacToe, WinningMoveDiagonal) {
 		"X--"
 		"OOX");
 	
-	EXPECT_EQ(4, ttt.bestMoveFor('X'));
+	EXPECT_EQ(4, ttt.bestSquareFor('X'));
 }

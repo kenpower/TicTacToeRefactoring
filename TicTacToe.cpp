@@ -4,10 +4,7 @@
 const int NUM_CELLS = 9;
 const char EMPTY_CELL = '-';
 
-struct Move {
-	int square;
-	int score;
-};
+
 
 TicTacToe::TicTacToe(char* b) {
 	for (int i = 0; i < NUM_CELLS; i++)
@@ -25,20 +22,24 @@ int TicTacToe::scoreFor(char player) {
 	return VALID;
 }
 
-int TicTacToe::bestMoveFor(char player) {
+int TicTacToe::bestSquareFor(char player) {
+	return bestMoveFor(player).square;
+}
+
+Move TicTacToe::bestMoveFor(char player) {
 	const Move NoMove{ -1, -1000 };
 
 	Move bestMove = NoMove;
 	for (int position = 0; position < NUM_CELLS; position++) {
 		if (!occupied(position)) {
 			TicTacToe gameAfterMove = play(position, player);
-			Move thisMove = {position, gameAfterMove.scoreFor(player)};
-			if(thisMove.score > bestMove.score)
+			Move thisMove = { position, gameAfterMove.scoreFor(player) };
+			if (thisMove.score > bestMove.score)
 				bestMove = thisMove;
 		}
 	}
 
-	return bestMove.square;
+	return bestMove;
 }
 
 TicTacToe TicTacToe::play(int i, char player) {
