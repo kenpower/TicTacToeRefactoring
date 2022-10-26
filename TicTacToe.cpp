@@ -20,23 +20,23 @@ int TicTacToe::bestMoveFor(char player) {
 	const int WIN = 100;
 	const int VALID = 0;
 
-	Move result = NoMove;
+	Move bestMove = NoMove;
 	for (int position = 0; position < NUM_CELLS; position++) {
 		if (!occupied(position)) {
-			TicTacToe t = play(position, player);
-			if (t.winner() == player){
-				result = Move{position, WIN};
+			TicTacToe gameAfterMove = play(position, player);
+			if (gameAfterMove.winner() == player){
+				bestMove = Move{position, WIN};
 				break;
-			}	
+			}
 
 			Move thisMove = Move{ position, VALID };
-			if(thisMove.score > result.score)
-				result = thisMove;
+			if(thisMove.score > bestMove.score)
+				bestMove = thisMove;
 
 		}
 	}
 
-	return result.square;
+	return bestMove.square;
 }
 
 TicTacToe TicTacToe::play(int i, char player) {
