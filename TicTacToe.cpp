@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "TicTacToe.h"
+const int NUM_CELLS = 9;
 
 TicTacToe::TicTacToe(char* b) {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < NUM_CELLS; i++)
 		grid[i] = b[i];
 }
 
@@ -10,7 +11,7 @@ TicTacToe::TicTacToe(char* b) {
 int TicTacToe::bestMoveFor(char player) {
 	const int NoMove = -1;
 	int result = NoMove;
-	for (int move = 0; move < 9; move++) {
+	for (int move = 0; move < NUM_CELLS; move++) {
 		if (!occupied(move)) {
 			TicTacToe t = play(move, player);
 			if (t.winner() == player){
@@ -40,12 +41,16 @@ bool TicTacToe::occupied(int cell) {
 }
 
 char TicTacToe::winner() {
-	if (threeInARow(0,1,2))
-		return grid[0];
-	if (threeInARow(3, 4, 5))
-		return grid[0]; 
-	if (threeInARow(6, 7, 8))
-		return grid[0]; 
+	const int TL = 0, TM = 1, TR = 2;
+	const int ML = 3, MM = 4, MR = 5;
+	const int BL = 6, BM = 7, BR = 8;
+
+	if (threeInARow(TL,TM,TR))
+		return grid[TL];
+	if (threeInARow(ML, MM, MR))
+		return grid[ML]; 
+	if (threeInARow(BL, BM, BR))
+		return grid[BL]; 
 	
 	return '-';
 }
