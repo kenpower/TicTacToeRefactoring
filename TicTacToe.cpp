@@ -47,15 +47,16 @@ char TicTacToe::winner() {
 	const int ML = 3, MM = 4, MR = 5;
 	const int BL = 6, BM = 7, BR = 8;
 
-	const int NUM_LINES = 3;
+	const int NUM_LINES = 7;
 	const int lines[][3] = {
-		{TL,TM,TR}, {ML, MM, MR}, {BL, BM, BR}
+		{TL,TM,TR}, {ML, MM, MR}, {BL, BM, BR},
+		{TL, ML, BL}, {TM, MM, BM}, {TR, MR, BR},
+		{TL, MM, BR}, {TR, MM, BL}
 	};
 
 	for(int i=0; i< NUM_LINES; i++)
 		if (threeInARow(lines[i][0], lines[i][1], lines[i][2]))
-			return grid[TL];
-
+			return grid[lines[i][0]];
 	
 	return EMPTY_CELL;
 }
