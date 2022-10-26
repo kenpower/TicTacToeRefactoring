@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "TicTacToe.h"
+
 const int NUM_CELLS = 9;
+const char EMPTY_CELL = '-';
 
 TicTacToe::TicTacToe(char* b) {
 	for (int i = 0; i < NUM_CELLS; i++)
@@ -37,7 +39,7 @@ char TicTacToe::threeInARow(int a, int b, int c) {
 }
 
 bool TicTacToe::occupied(int cell) {
-	return grid[cell] != '-';
+	return grid[cell] != EMPTY_CELL;
 }
 
 char TicTacToe::winner() {
@@ -52,5 +54,5 @@ char TicTacToe::winner() {
 	if (threeInARow(BL, BM, BR))
 		return grid[BL]; 
 	
-	return '-';
+	return EMPTY_CELL;
 }
