@@ -1,4 +1,5 @@
 #pragma once
+
 class TicTacToe
 {
 	char grid[9];

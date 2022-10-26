@@ -13,7 +13,18 @@ TEST(TicTacToe, ValidMove8) {
 
 TEST(TicTacToe, ValidMove0) {
 	TicTacToe ttt("---------");
-	EXPECT_EQ(8, ttt.bestMoveFor('X'));
+	int move = ttt.bestMoveFor('X');
+	EXPECT_TRUE(	
+		0 == move ||
+		1 == move ||
+		2 == move ||
+		3 == move ||
+		4 == move ||
+		5 == move ||
+		6 == move ||
+		7 == move ||
+		8 == move 
+	);
 }
 
 TEST(TicTacToe, ValidMoveNone) {
