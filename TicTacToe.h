@@ -6,6 +6,7 @@ class TicTacToe
 
 	char threeInARow(int a, int b, int c);
 	bool TicTacToe::occupied(int cell);
+	int scoreFor(char);
 public:
 	TicTacToe(char* b);
 	

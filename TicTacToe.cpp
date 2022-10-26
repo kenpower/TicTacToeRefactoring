@@ -14,25 +14,27 @@ TicTacToe::TicTacToe(char* b) {
 		grid[i] = b[i];
 }
 
+int TicTacToe::scoreFor(char player) {
+	const int WIN = 100;
+	const int LOSE = -WIN;
+	const int VALID = 0;
+
+	char opponent = player == 'X' ? 'O' : 'X';
+	if (winner() == player) return WIN;
+	if (winner() == opponent) return LOSE;
+	return VALID;
+}
 
 int TicTacToe::bestMoveFor(char player) {
 	const Move NoMove{ -1, -1000 };
-	const int WIN = 100;
-	const int VALID = 0;
 
 	Move bestMove = NoMove;
 	for (int position = 0; position < NUM_CELLS; position++) {
 		if (!occupied(position)) {
 			TicTacToe gameAfterMove = play(position, player);
-			if (gameAfterMove.winner() == player){
-				bestMove = Move{position, WIN};
-				break;
-			}
-
-			Move thisMove = Move{ position, VALID };
+			Move thisMove = {position, gameAfterMove.scoreFor(player)};
 			if(thisMove.score > bestMove.score)
 				bestMove = thisMove;
-
 		}
 	}
 
