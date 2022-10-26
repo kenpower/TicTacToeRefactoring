@@ -25,3 +25,8 @@ TEST(TicTacToe, WinningMove) {
 	TicTacToe ttt("XO-XX-OOX");
 	EXPECT_EQ(5, ttt.bestMoveFor('X'));
 }
+
+TEST(TicTacToe, WinningMoveVertical) {
+	TicTacToe ttt("-O-XO-XOX");
+	EXPECT_EQ(6, ttt.bestMoveFor('X'));
+}
