@@ -52,8 +52,42 @@ TEST(TicTacToe, WinningMoveVertical) {
 TEST(TicTacToe, WinningMoveDiagonal) {
 	TicTacToe ttt(
 		"XO-"
-		"X--"
-		"OOX");
+		"O-O"
+		"-OX");
 	
 	EXPECT_EQ(4, ttt.bestSquareFor('X'));
+}
+
+TEST(TicTacToe, PerfectMoveAtStartIsACorner) {
+	TicTacToe ttt("---------");
+	int move = ttt.bestSquareFor('X');
+	EXPECT_TRUE(
+		0 == move ||
+		2 == move ||
+		6 == move ||
+		8 == move
+	);
+}
+
+TEST(TicTacToe, PerfectReplyToCenterIsACorner) {
+	TicTacToe ttt(
+		"---"
+		"-O-"
+		"---");
+	int move = ttt.bestSquareFor('X');
+	EXPECT_TRUE(
+		0 == move ||
+		2 == move ||
+		6 == move ||
+		8 == move
+	);
+}
+
+TEST(TicTacToe, PerfectReplyToCornerIsMiddle) {
+	TicTacToe ttt(
+		"O--"
+		"---"
+		"---");
+	int move = ttt.bestSquareFor('X');
+	EXPECT_EQ(4, move);
 }

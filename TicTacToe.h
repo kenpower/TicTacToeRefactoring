@@ -21,5 +21,6 @@ public:
 	TicTacToe play(int i, char player);
 	
 	char winner();
+
 };
 

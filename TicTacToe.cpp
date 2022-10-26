@@ -4,8 +4,6 @@
 const int NUM_CELLS = 9;
 const char EMPTY_CELL = '-';
 
-
-
 TicTacToe::TicTacToe(char* b) {
 	for (int i = 0; i < NUM_CELLS; i++)
 		grid[i] = b[i];
@@ -13,13 +11,13 @@ TicTacToe::TicTacToe(char* b) {
 
 int TicTacToe::scoreFor(char player) {
 	const int WIN = 100;
-	const int LOSE = -WIN;
-	const int VALID = 0;
 
-	char opponent = player == 'X' ? 'O' : 'X';
 	if (winner() == player) return WIN;
-	if (winner() == opponent) return LOSE;
-	return VALID;
+	
+	char opponent = player == 'X' ? 'O' : 'X';
+	Move nextMove = bestMoveFor(opponent);
+
+	return  -nextMove.score;
 }
 
 int TicTacToe::bestSquareFor(char player) {
@@ -27,15 +25,18 @@ int TicTacToe::bestSquareFor(char player) {
 }
 
 Move TicTacToe::bestMoveFor(char player) {
-	const Move NoMove{ -1, -1000 };
+	const int DRAW = 0;
+	const Move NoMove{ -1, DRAW };
 
 	Move bestMove = NoMove;
 	for (int position = 0; position < NUM_CELLS; position++) {
 		if (!occupied(position)) {
 			TicTacToe gameAfterMove = play(position, player);
 			Move thisMove = { position, gameAfterMove.scoreFor(player) };
-			if (thisMove.score > bestMove.score)
+			if (thisMove.score > bestMove.score || bestMove.square == -1)
 				bestMove = thisMove;
+			if (thisMove.score == 100)
+				break;
 		}
 	}
 
