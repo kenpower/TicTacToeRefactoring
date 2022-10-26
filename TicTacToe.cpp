@@ -28,11 +28,11 @@ int TicTacToe::bestMoveFor(char player) {
 				result = Move{position, WIN};
 				break;
 			}	
-			if (!occupied(position)) {
-				Move thisMove = Move{ position, VALID };
-				if(thisMove.score > result.score)
+
+			Move thisMove = Move{ position, VALID };
+			if(thisMove.score > result.score)
 				result = thisMove;
-			}
+
 		}
 	}
 
